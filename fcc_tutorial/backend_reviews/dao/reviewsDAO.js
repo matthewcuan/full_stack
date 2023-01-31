@@ -32,6 +32,7 @@ export default class ReviewsDAO {
 
   static async getReview(reviewId) {
     try {
+      console.log("getting")
       return await reviews.findOne({ _id: ObjectId(reviewId) })
     } catch (e) {
       console.error(`Unable to get review: ${e}`)
