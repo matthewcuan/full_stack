@@ -6,6 +6,7 @@
 body {
   background-color: #131720;
   font-family: sans-serif;
+  color: white;
 }
 
 h3 {
@@ -58,6 +59,10 @@ input {
 
 input::placeholder {
   color: white;
+}
+
+.review_title {
+  top: 60.5px;
 }
 
 #section {
