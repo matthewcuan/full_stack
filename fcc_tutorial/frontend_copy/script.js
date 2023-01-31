@@ -39,7 +39,7 @@ function returnMovies(url) {
             // release_date.setAttribute('class', )
             
             movie_title = `${element.title}`;
-            title.innerHTML = movie_title;
+            title.innerHTML = movie_title + `<br><a class="review_link" href="movie.html?id=${element.id}&title=${movie_title}">Reviews</a>`;
             link.href = SEARCH_PATH + movie_title.split(" ").join("+");
             link.target = "_blank";
             image.src = IMG_PATH + element.poster_path;

@@ -16,6 +16,7 @@ h3 {
   overflow: hidden;
   background-color: #131720;
   padding: 10px;
+  padding-bottom: 0px;
   top: 0;
   width: 100%;
   position: fixed;
@@ -55,6 +56,10 @@ input {
   padding: 6px;
 }
 
+input::placeholder {
+  color: white;
+}
+
 #section {
   position: relative;
   top: 60.5px;
@@ -62,6 +67,7 @@ input {
 
 a {
   text-decoration: none;
+  color: white;
 }
 
 .center {
@@ -98,4 +104,14 @@ a {
 #title {
   margin: 0;
   padding: 10px;
+}
+
+.review_link {
+  font-size: small;
+  color: grey;
+}
+
+.review_link:hover {
+  background-color: white;
+  border-radius: 2.5px;
 }
