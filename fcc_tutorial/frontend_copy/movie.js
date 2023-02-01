@@ -33,3 +33,17 @@ function returnReviews(url) {
         });
     });
 }
+
+// TODO: create functions editReview, deleteReview, and addReview
+
+function editReview(id, review, user) {
+
+}
+
+function deleteReview(id) {
+
+}
+
+function addReview(id, review, user) {
+
+}
