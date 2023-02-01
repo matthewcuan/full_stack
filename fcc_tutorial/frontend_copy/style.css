@@ -61,6 +61,13 @@ input::placeholder {
   color: white;
 }
 
+.edit_input {
+  background-color: #434c5d;
+  width: 90%;
+  border-radius: 9.5px;
+  margin: 10px 0px;
+}
+
 .review_title {
   display: flex;
   position: absolute;
@@ -69,9 +76,18 @@ input::placeholder {
   align-items: center;
 }
 
+.review_content {
+  margin: 10px;
+}
+
 #section {
   position: relative;
   top: 60.5px;
+}
+
+#review_section {
+  position: relative;
+  top: 136.5px;
 }
 
 a {
@@ -103,7 +119,11 @@ a {
   transition: transform .1s;
   border-radius: 19px;
   text-align: center;
-  background-color: #151f30;
+  background-color: #212d44;
+}
+
+.review_card {
+  padding: 10px
 }
 
 .card:hover {
