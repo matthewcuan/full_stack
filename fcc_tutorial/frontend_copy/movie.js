@@ -9,6 +9,29 @@ const title = document.getElementById("title");
 
 title.innerText = movieTitle;
 
+const new_card = document.createElement('div');
+new_card.innerHTML = `
+<div class="row">
+    <div class="column">
+         <div class="card review_card" id="new_card">
+            <p><strong>New Review: </strong>
+                <input class="edit_input" type="text" id="new_review">
+            </p>
+            <p><strong>User: </strong>
+                <input class="edit_input" type="text" id="new_user">
+            </p>
+            <p>
+                <a href="#" onclick="saveReview('new_review', 'new_user')">&#128190;</a>
+            </p>
+         </div>         
+     </div>
+</div>
+`
+
+main.appendChild(new_card);
+
+
+
 returnReviews(APILINK);
 
 function returnReviews(url) {
@@ -24,7 +47,7 @@ function returnReviews(url) {
                         <p class="review_content"><strong>Review: </strong>${review.review}</p>
                         <p class="review_content"><strong>User: </strong>${review.user}</p>
                         <p class="review_content"><a href="#" onclick="editReview('${review._id}', '${review.review}', 
-                        '${review.user}')">&#9999;&#65039;</a> <a href="#" onclick="deleteReview('${review._id}')">&#128465;</a></p>
+                        '${review.user}')">&#9999;&#65039;</a> <a href="#" onclick="deleteReview('${review._id}')">&#128465;</a></p>                   
                     </div>
                 </div>
             </div>
@@ -35,7 +58,7 @@ function returnReviews(url) {
     });
 }
 
-// TODO: create functions editReview, deleteReview, and addReview
+// TODO: create functions addReview
 
 function editReview(id, review, user) {
     console.log("editing");
@@ -75,29 +98,35 @@ function saveReview(reviewInputId, userInputId, id) {
     const review = document.getElementById(reviewInputId).value;
     const user = document.getElementById(userInputId).value;
 
-    fetch(APILINK + id, {
-        method: 'PUT',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({"user": user, "review": review})
-    }).then(res => res.json())
-    .then(res => {
-        console.log(res)
-        location.reload();
-    }); 
+    if (id) {
+        fetch(APILINK + id, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"user": user, "review": review})
+        }).then(res => res.json())
+        .then(res => {
+            console.log(res)
+            location.reload();
+        }); 
+    } else {
+        fetch(APILINK + "/new", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"movieId": movieId, "user": user, "review": review})
+        }).then(res => res.json())
+        .then(res => {
+            console.log(res)
+            location.reload();
+        }); 
+    }
+    
 }
-
-// function deleteReview(id) {
-//     fetch(APILINK + id, {
-//         method: 'DELETE'
-//     }).then(res => res.json())
-//     .then(res => {
-//         console.log("deleting")
-//         location.reload();
-//     }); 
-// }
 
 function deleteReview(id) {
     fetch(APILINK + id, {
@@ -108,7 +137,3 @@ function deleteReview(id) {
         location.reload();
       });    
 }
-
-// function addReview(id, review, user) {
-
-// }
