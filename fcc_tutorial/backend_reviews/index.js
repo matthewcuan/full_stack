@@ -1,19 +1,14 @@
 import dotenv from 'dotenv'
-dotenv.config()
 import app from "./server.js"
 import mongodb from "mongodb"
 import ReviewsDAO from "./dao/reviewsDAO.js"
 
-
+dotenv.config()
 const MongoClient = mongodb.MongoClient
-console.log(process.env.FCC_MONGO_ID)
-console.log(process.env.FCC_MONGO_KEY)
 const mongo_username = process.env.FCC_MONGO_ID
 const mongo_password = process.env.FCC_MONGO_KEY
 console.log("username=" + mongo_username + " pass=" + mongo_password)
 const uri = `mongodb+srv://${mongo_username}:${mongo_password}@cluster0.vj272ja.mongodb.net/?retryWrites=true&w=majority`
-
-// const uri = `mongodb+srv://matthew:cuan@cluster0.vj272ja.mongodb.net/?retryWrites=true&w=majority`
 
 const port = 8000
 
