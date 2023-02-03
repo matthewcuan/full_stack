@@ -4,6 +4,7 @@ const ObjectId = mongodb.ObjectID
 let reviews
 
 export default class ReviewsDAO {
+  // retrieves reviews from mongodb collection
   static async injectDB(conn) {
     if (reviews) {
       return
@@ -15,6 +16,7 @@ export default class ReviewsDAO {
     }
   }
 
+  // adds review (create)
   static async addReview(movieId, user, review) {
     try {
       const reviewDoc = {
@@ -30,6 +32,7 @@ export default class ReviewsDAO {
     }
   }
 
+  // gets review (read)
   static async getReview(reviewId) {
     try {
       console.log("getting")
@@ -40,6 +43,7 @@ export default class ReviewsDAO {
     }
   }
 
+  // updates review (update)
   static async updateReview(reviewId, user, review) {
     try {
       const updateResponse = await reviews.updateOne(
@@ -54,8 +58,8 @@ export default class ReviewsDAO {
     }
   }
 
+  // deletes review (delete)
   static async deleteReview(reviewId) {
-
     try {
       const deleteResponse = await reviews.deleteOne({
         _id: ObjectId(reviewId),
@@ -68,6 +72,7 @@ export default class ReviewsDAO {
     }
   }
 
+  // gets all reviews of movie with id of movieId
   static async getReviewsByMovieId(movieId) {
     try {
       const cursor = await reviews.find({ movieId: parseInt(movieId) })
