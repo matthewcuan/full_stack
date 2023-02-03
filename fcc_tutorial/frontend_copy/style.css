@@ -13,6 +13,7 @@ h3 {
   color: white;
 }
 
+/* nav bar */
 .top-nav {
   overflow: hidden;
   background-color: #131720;
@@ -61,33 +62,11 @@ input::placeholder {
   color: white;
 }
 
-.edit_input {
-  background-color: #434c5d;
-  width: 90%;
-  border-radius: 9.5px;
-  margin: 10px 0px;
-}
-
-.review_title {
-  display: flex;
-  position: absolute;
-  top: 50.5px;
-  padding: 14px 26px;
-  align-items: center;
-}
-
-.review_content {
-  margin: 10px;
-}
+/* main section */
 
 #section {
   position: relative;
   top: 60.5px;
-}
-
-#review_section {
-  position: relative;
-  top: 136.5px;
 }
 
 a {
@@ -99,11 +78,7 @@ a {
   text-align: center;
 }
 
-.thumbnail {
-  width: 100%;
-  height: 100%;
-  border-radius: 19px;
-}
+/* movie cards */
 
 .row {
   height: 60%;
@@ -122,8 +97,10 @@ a {
   background-color: #212d44;
 }
 
-.review_card {
-  padding: 10px
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  border-radius: 19px;
 }
 
 .card:hover {
@@ -143,4 +120,34 @@ a {
 .review_link:hover {
   background-color: white;
   border-radius: 2.5px;
+}
+
+/* movie.html */
+
+#review_section {
+  position: relative;
+  top: 136.5px;
+}
+
+.edit_input {
+  background-color: #434c5d;
+  width: 90%;
+  border-radius: 9.5px;
+  margin: 10px 0px;
+}
+
+.review_title {
+  display: flex;
+  position: absolute;
+  top: 50.5px;
+  padding: 14px 26px;
+  align-items: center;
+}
+
+.review_card {
+  padding: 10px
+}
+
+.review_content {
+  margin: 10px;
 }

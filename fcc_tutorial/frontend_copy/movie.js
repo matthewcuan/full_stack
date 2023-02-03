@@ -9,6 +9,7 @@ const title = document.getElementById("title");
 
 title.innerText = movieTitle;
 
+// card for adding a new review
 const new_card = document.createElement('div');
 new_card.innerHTML = `
 <div class="row">
@@ -30,10 +31,9 @@ new_card.innerHTML = `
 
 main.appendChild(new_card);
 
-
-
 returnReviews(APILINK);
 
+// displays reviews (read)
 function returnReviews(url) {
     fetch(url + "movie/" + movieId).then(res => res.json())
     .then(function(data) {
@@ -58,8 +58,7 @@ function returnReviews(url) {
     });
 }
 
-// TODO: create functions addReview
-
+// enters editing mode (update)
 function editReview(id, review, user) {
     console.log("editing");
     const element = document.getElementById(id);
@@ -81,6 +80,7 @@ function editReview(id, review, user) {
     `
 }
 
+// returns to uneditable version of review card
 function cancelEdit(id, review, user) {
     console.log("cancelled");
     const element = document.getElementById(id);
@@ -93,6 +93,7 @@ function cancelEdit(id, review, user) {
     `
 }
 
+// saves review to database (create/update)
 function saveReview(reviewInputId, userInputId, id) {
     console.log("saving");
     const review = document.getElementById(reviewInputId).value;
@@ -128,6 +129,7 @@ function saveReview(reviewInputId, userInputId, id) {
     
 }
 
+// deletes review (delete)
 function deleteReview(id) {
     fetch(APILINK + id, {
       method: 'DELETE'

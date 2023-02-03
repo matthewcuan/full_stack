@@ -13,6 +13,8 @@ function returnMovies(url) {
     .then(function(data) {
         console.log(data.results);
         data.results.forEach(element => {
+            // uses .createElement, .setAttribute, and .appendChild to add to html
+            // creates new elements then sets attributes for each
             const div_card = document.createElement('div');
             div_card.setAttribute('class', 'card');
 
@@ -34,16 +36,16 @@ function returnMovies(url) {
 
             const link = document.createElement('a');
             link.setAttribute('class', 'link')
-
-            // const release_date = document.createElement('p');
-            // release_date.setAttribute('class', )
             
+            // sets more attributes using .innerHTML and .{attribute}
             movie_title = `${element.title}`;
-            title.innerHTML = movie_title + `<br><a class="review_link" href="movie.html?id=${element.id}&title=${movie_title}">Reviews</a>`;
+            title.innerHTML = movie_title + `<br><a class="review_link" 
+            href="movie.html?id=${element.id}&title=${movie_title}">Reviews</a>`;
             link.href = SEARCH_PATH + movie_title.split(" ").join("+");
             link.target = "_blank";
             image.src = IMG_PATH + element.poster_path;
 
+            // appends elements to each other
             center.appendChild(image);
             div_card.appendChild(center);
             div_card.appendChild(title);
@@ -52,10 +54,29 @@ function returnMovies(url) {
             div_row.appendChild(div_column);
 
             main.appendChild(div_row);
+        
+            // above js code creates and adds below html code to index.html
+            // ------------------------------------------------
+            // <div class="row">
+            //    <div class="column">
+            //       <a href="https://google.com/search?q=${movie_title}"
+            //        <div class="card">
+            //            <div class="center">
+            //              <img src="image.jpg" class="thumbnail">
+            //            </div>
+            //            <h3 class="title">Movie Title<br><a class="review_link" 
+            //              href="movie.html?id=${element.id}&title=${movie_title}">
+            //              Reviews</a>`;
+            //            </h3>
+            //     </div>
+            //   </div>
+            // </div>
+            // ------------------------------------------------
         });
     });
 }
 
+// listens to query and displays relevant movies
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     main.innerHTML = '';
