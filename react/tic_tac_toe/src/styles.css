@@ -77,9 +77,14 @@
     display: table;
   }
   
+  .currentMove {
+    display: block;
+  }
+
   .status {
     margin-bottom: 10px;
   }
+
   .game {
     display: flex;
     flex-direction: row;
