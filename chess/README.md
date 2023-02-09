@@ -13,7 +13,6 @@ Two player chess MERN full stack web app played on separate or a single device.
     - Can review games after the game has ended
     - Can send links to other players to play against them
     - Can create and login to personal accounts
-    - Can choose between single device and multi-device playing modes
 
 - App: 
 
