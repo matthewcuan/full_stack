@@ -27,3 +27,9 @@ Two player chess MERN full stack web app played on separate or a single device.
 
 - Set up react app
 - Write logic for chess game
+
+## Packages
+
+- use fetch api from js (for requests to server)
+- universal-cookie (for user authentication)
+- stream-chat (for live chat)

@@ -9,6 +9,3 @@ function App() {
 
 export default App;
 
-// use fetch api from js
-// universal-cookie (for user authentication)
-// stream-chat (for live chat)
