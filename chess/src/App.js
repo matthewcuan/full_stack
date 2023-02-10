@@ -1,9 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import { Chessboard } from "react-chessboard";
 
 function App() {
   return (
-    <div className="App">
+    <div class="main">
+      <div class="board">
+        <Chessboard id="BasicBoard" />
+      </div>
     </div>
   );
 }
