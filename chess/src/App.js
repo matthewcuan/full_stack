@@ -1,11 +1,11 @@
 import './App.css';
-import { Chessboard } from "react-chessboard";
+import './components/game'
 
 function App() {
   return (
     <div class="main">
       <div class="board">
-        <Chessboard id="BasicBoard" />
+        <randomBoard />
       </div>
     </div>
   );
