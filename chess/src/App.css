@@ -1,9 +1,10 @@
 .main {
+  height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .board {
-  height: 50%;
   width: 50%;
 }
