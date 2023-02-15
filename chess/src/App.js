@@ -1,14 +1,15 @@
 import "./App.css"
 import { React } from "react";
-import { Chessboard } from "react-chessboard";
+import Chessboard from "@chrisoakman/chessboardjs";
 import { Chess } from "chess.js";
 
 export default function App() {
 
   const game = new Chess();
+  const Board = null;
   console.log(game.ascii());
 
-  function handlePieceDragBegin (source, piece, position, orientation) {
+  function handleDragStart (source, piece, position, orientation) {
     console.log("dragging")
     // do not pick up pieces if the game is over
     if (game.isGameOver()) return false
@@ -20,7 +21,7 @@ export default function App() {
     }
   }
 
-  function handlePieceDrop (source, target) {
+  function handleDrop (source, target) {
     console.log("dropped")
     // see if the move is legal
     var move = game.move({
@@ -32,23 +33,18 @@ export default function App() {
     // illegal move
     if (move === null) {
       alert("Illegal move! Please try again.")
-      return 'snapback'
+      return 'snapback';
     }
     
     console.log(game.ascii());
-    console.log("should return true")
+    console.log(game.fen())
+    console.log("should be returning true")
 
     return true;
   }
 
   // function newBoard(fen) {
-  //   const config = {
-  //     draggable: true,
-  //     position: game.fen(),
-  //     onDragStart: onDragStart,
-  //     onDrop: onDrop,
-  //     // onSnapEnd: onSnapEnd
-  //   }
+  //   
   //   return (
   //     <Chessboard
   //       config={config}
@@ -56,14 +52,20 @@ export default function App() {
   //   )
   // }
 
+  const config = {
+        draggable: true,
+        position: game.fen(),
+        onDragStart: handleDragStart,
+        onDrop: handleDrop,
+        // onSnapEnd: onSnapEnd
+      }
+
+  Board = Chessboard(config)
+
   return (
     <div className="main">
       <div className="board">
-        <Chessboard
-          arePiecesDraggable={true}
-          onPieceDragBegin={handlePieceDragBegin}
-          onPieceDrop={handlePieceDrop}        
-        />
+        <Board />
       </div>
     </div>
   ) 
