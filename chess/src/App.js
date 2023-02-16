@@ -1,15 +1,24 @@
 import "./App.css"
-import { React } from "react";
-import Chessboard from "@chrisoakman/chessboardjs";
+import { React, useState } from "react";
+import { Chessboard } from "react-chessboard"
 import { Chess } from "chess.js";
 
 export default function App() {
 
-  const game = new Chess();
-  const Board = null;
+  const [game, setGame] = useState(new Chess());
+  console.log("at the top")
   console.log(game.ascii());
 
-  function handleDragStart (source, piece, position, orientation) {
+  function safeGameMutate(modify){
+    setGame(()=> {
+      const update = new Chess ()
+      update.loadPgn(game.pgn())
+      modify(update)
+      return update
+    })
+  }
+
+  function handlePieceDragBegin (source, piece, position, orientation) {
     console.log("dragging")
     // do not pick up pieces if the game is over
     if (game.isGameOver()) return false
@@ -21,30 +30,41 @@ export default function App() {
     }
   }
 
-  function handleDrop (source, target) {
+  function handlePieceDrop (source, target, piece) {
     console.log("dropped")
     // see if the move is legal
-    var move = game.move({
-      from: source,
-      to: target,
-      promotion: 'q' // NOTE: always promote to a queen for example simplicity
-    })
+    let move = null;
+    safeGameMutate((game) => {
+      move = game.move({
+        from: source,
+        to: target,
+        promotion:'q'
+      })
+  })
+
+  console.log(move)
   
     // illegal move
     if (move === null) {
       alert("Illegal move! Please try again.")
-      return 'snapback';
+      return false;
     }
     
-    console.log(game.ascii());
-    console.log(game.fen())
-    console.log("should be returning true")
+    console.log("after move")  
+    console.log(fen())
+    console.log("finishing function")
 
     return true;
   }
 
   // function newBoard(fen) {
-  //   
+  //   const config = {
+  //     draggable: true,
+  //     position: game.fen(),
+  //     onDragStart: onDragStart,
+  //     onDrop: onDrop,
+  //     // onSnapEnd: onSnapEnd
+  //   }
   //   return (
   //     <Chessboard
   //       config={config}
@@ -52,20 +72,18 @@ export default function App() {
   //   )
   // }
 
-  const config = {
-        draggable: true,
-        position: game.fen(),
-        onDragStart: handleDragStart,
-        onDrop: handleDrop,
-        // onSnapEnd: onSnapEnd
-      }
-
-  Board = Chessboard(config)
+  function fen() {
+    return game.fen();
+  }
 
   return (
     <div className="main">
       <div className="board">
-        <Board />
+        <Chessboard 
+          position={fen()}
+          onPieceDragBegin={handlePieceDragBegin}
+          onPieceDrop={handlePieceDrop}
+        />
       </div>
     </div>
   ) 

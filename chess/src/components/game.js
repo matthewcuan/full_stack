@@ -1,19 +1,14 @@
-import { React } from "react";
-import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 
 export default function Game() {
   
-  // const board = null;
   const game = new Chess();
-  // var [status, setStatus] = game.status();
-  // var [fen, setFen] = game.fen();
-  // var [pgn,setPgn] = game.pgn();
+  console.log(game.ascii());
 
-  function handleDragStart (source, piece, position, orientation) {
+  function handlePieceDragBegin (source, piece, position, orientation) {
     console.log("dragging")
     // do not pick up pieces if the game is over
-    if (game.game_over()) return false
+    if (game.isGameOver()) return false
   
     // only pick up pieces for the side to move
     if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
@@ -22,8 +17,8 @@ export default function Game() {
     }
   }
 
-  function handleDrop (source, target) {
-    console.log("dropping")
+  function handlePieceDrop (source, target) {
+    console.log("dropped")
     // see if the move is legal
     var move = game.move({
       from: source,
@@ -32,36 +27,16 @@ export default function Game() {
     })
   
     // illegal move
-    if (move === null) return 'snapback'
-  
-  }
-
-  // var config = {
-  //   draggable: true,
-  //   position: 'start',
-  //   onDragStart: onDragStart,
-  //   onDrop: onDrop,
-  //   onSnapEnd: onSnapEnd
-  // }
-
-  // board = Chessboard('myBoard', config)
-
-  return (
-    <div className="board">
-      <Chessboard
-        draggable='true'
-        position='start'
-        onDragStart={handleDragStart}
-        onDrop={handleDrop}
-      />
-      {/* <label>Status:</label>
-      <div id="status"></div>
-      <label>FEN:</label>
-      <div id="fen"></div>
-      <label>PGN:</label>
-      <div id="pgn"></div> */}
-    </div>
+    if (move === null) {
+      alert("Illegal move! Please try again.")
+      return 'snapback';
+    }
     
-  ) 
+    console.log(game.ascii());
+    console.log(game.fen())
+    console.log("should be returning true")
+    
+    return true;
+  }
 
 }
