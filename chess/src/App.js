@@ -6,7 +6,7 @@ import { Chess } from "chess.js";
 export default function App() {
 
   const [game, setGame] = useState(new Chess());
-  const [history, setHistory] = useState([game.history()]);
+  const [history, setHistory] = useState([game.fen()]);
   
   function handlePieceDrop(source, target) {
     let move = game.move({
@@ -18,7 +18,7 @@ export default function App() {
     if (move) {
       setGame(game);
       console.log(game.ascii());
-      setHistory(game.history());
+      setHistory([...history, game.fen()]);
       console.log(history)
       return true;
     }
@@ -101,7 +101,6 @@ export default function App() {
       <div className="board">
         <Chessboard 
           position={game.fen()}
-          // onPieceDragBegin={handlePieceDragBegin}
           onPieceDrop={handlePieceDrop}
         />
       </div>
