@@ -33,3 +33,29 @@ Two player chess MERN full stack web app played on separate or a single device.
 - use fetch api from js (for requests to server)
 - universal-cookie (for user authentication)
 - stream-chat (for live chat)
+- react-router-dom (for routes)
+
+## Repo Structure
+
+├── src
+│   ├── components
+│   │   ├── login.js
+│   │   ├── sign_up.js
+│   │   ├── game.js
+│   │   ├── game_page.js
+│   │   ├── game_history.js
+│   ├── router
+│   │   ├── past_games.js
+│   ├── index.js
+│   ├── index.css
+│   ├── app.js
+│   ├── app.css
+├── public
+│   ├── index.html
+│   ├── mainfest.json
+│   ├── robots.txt
+├── dist (or build
+├── node_modules
+├── package.json
+├── package-lock.json 
+└── .gitignore
