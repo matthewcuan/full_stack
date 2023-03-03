@@ -17,6 +17,10 @@ io.on('connection', (socket) => {
         console.log('user disconnected');
     });
 
+    socket.on("createNewGame", (gameId) => {
+        socket.join(gameId);
+    })
+
     socket.on('chat message', (msg) => {
         console.log('message: ' + msg);
         io.emit('chat message', msg);
